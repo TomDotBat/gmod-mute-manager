@@ -4,15 +4,15 @@ A very simple script that helps users mute another player locally.
 That's literally it, it does come with a menu though... no skinning included.
 
 ## Chat Commands
-/mute {playername} - Mutes the specified player locally
-/unmute {playername} - Unmutes the specified player locally
-/mutemanager - Opens the mute manager menu
+**/mute {playername}** - Mutes the specified player locally
+**/unmute {playername}** - Unmutes the specified player locally
+**/mutemanager** - Opens the mute manager menu
 
 *Both /mute and /unmute will also open the menu if you do not specifiy a player's name.*
 
 ## Console Commands
-mute_manager - Opens the mute manager menu
-toms_mute_manager - Opens the mute manager menu
+**mute_manager** - Opens the mute manager menu
+**toms_mute_manager** - Opens the mute manager menu
 
 ## Configuration
 Mute manager comes with a **very** small config, there are two tables for you to change.
