@@ -121,20 +121,26 @@ local function findPlyFromString(findString)
 	return tar
 end
 
+local function canMute(ply)
+	local group = ply:GetUserGroup()
+    if config.cantMuteOthersRanks[group] then
+		chat.AddText("You can't mute other players as a: " .. group .. ".")
+    	return false
+    end
+end
+
 hook.Add("OnPlayerChat", "TomsMuteManager", function(ply, text) 
     if (ply != LocalPlayer()) then return end
 
-    local group = ply:GetUserGroup()
-    if config.cantMuteOthersRanks[group] then
-		chat.AddText("You can't mute other players as a: " .. group .. ".")
-    	return true
-    end
-
 	text = string.Trim(string.lower(text))
 
-	if string.Left(text, 12) == "/mutemanager" then openMenu() end
+	if string.Left(text, 12) == "/mutemanager" then
+		if !canMute(ply) then return true end
+		openMenu()
+	end
 
 	if string.Left(text, 5) == "/mute" then
+		if !canMute(ply) then return true end
 		if #text <= 5 then openMenu() return true end
 
 		local tar = findPlyFromString(string.Right(text, #text-6))
@@ -148,6 +154,7 @@ hook.Add("OnPlayerChat", "TomsMuteManager", function(ply, text)
 	end
 
 	if string.Left(text, 7) == "/unmute" then
+		if !canMute(ply) then return true end
 		if #text <= 7 then openMenu() return true end
 
 		local tar = findPlyFromString(string.Right(text, #text-8))
